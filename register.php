@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <?php
     #koneksi ke file fungtions
     require "fungctions.php";
     #kondisi jika username sudah di kirim
-    if(isset($_POST["register"])){
-        if(registrasi($_POST) > 0){
+    if( isset($_POST["register"]) ){
+
+        if( registrasi ($_POST) > 0){
             echo "<script>
             alert('user baru berhasil ditambahkan!');
           </script>";
@@ -12,7 +14,7 @@
         }
     }
 ?>
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaraAauto</title>
     <style>
-        ol {
+        ul {
             list-style: none;
         }
         li{
@@ -28,10 +30,11 @@
         }
     </style>
 </head>
+
 <body>
     <h1>Halaman Registrasi</h1>
-    <form action="" method= "get">
-        <ol>
+    <form action="" method= "post">
+        <ul>
             <li>
                 <label for="username" > User Name:</label>
                 <input type="text" name = "username" id = "username">
@@ -51,7 +54,8 @@
             <li>
                 <button type="submit" name = "register" >Registrasi</button>
             </li>
-        </ol>
+        </ul>
     </form>
 </body>
 </html>
+
