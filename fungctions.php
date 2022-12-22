@@ -31,14 +31,19 @@ function registrasi($data){
       #cek konfirmasi password
       if ( $password !== $password2 ){
         echo '<script language="javascript">alert("pw tidak sama");</script>'; 
-        return false; 
       }
 
       #enkripsi passworld
-      $password = password_hash($password, PASSWORD_DEFAULT);
+      $hassedpassword = password_hash($password, PASSWORD_DEFAULT);
 
       #menambahkan user ke data base
-      mysqli_query($conn, "INSERT INTO user VALUES('', '$username','$phone' ,'$password')");
+      $sql = "INSERT INTO `user` (`userid`, `username`, `userphone`, `userpassword`)  VALUES(NULL, '$username','$phone' ,'$hassedpassword') ";
+      if ($conn->query($sql) === TRUE) {
+      echo "berhasil terdaftar";
+      } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+      }
       return mysqli_affected_rows($conn);
 }
+//login 
 ?>
