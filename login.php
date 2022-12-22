@@ -1,62 +1,24 @@
+<!DOCTYPE html>
 <?php 
-session_start();
-require 'fungctions.php';
+	require 'koneksi.php';
+	if( isset($_POST['login']) ) {
 
-// cek cookie
-if( isset($_COOKIE['userid']) && isset($_COOKIE['key']) ) {
-	$id = $_COOKIE['userid'];
-	$key = $_COOKIE['key'];
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		#mencari username di dalam tabel user
+		$response = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
 
-	// ambil username berdasarkan id
-	$result = mysqli_query($conn, "SELECT username FROM user WHERE userid = $id");
-	$row = mysqli_fetch_assoc($result);
-
-	// cek cookie dan username
-	if( $key === hash('sha256', $row['username']) ) {
-		$_SESSION['login'] = true;
-	}
-}
-
-if( isset($_SESSION["login"]) ) {
-	header("Location: index.php");
-	exit;
-}
-
-
-if( isset($_POST["login"]) ) {
-
-	$username = $_POST["username"];
-	$password = $_POST["password"];
-
-	$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-
-	// cek username
-	if( mysqli_num_rows($result) === 1 ) {
-
-		// cek password
-		$row = mysqli_fetch_assoc($result);
-		if( password_verify($password, $row["password"]) ) {
-			// set session
-			$_SESSION["login"] = true;
-
-			// cek remember me
-			if( isset($_POST['remember']) ) {
-				// buat cookie
-				setcookie('id', $row['id'], time()+60);
-				setcookie('key', hash('sha256', $row['username']), time()+60);
+		if( mysqli_num_rows($response) === 1){
+			$row = mysqli_fetch_assoc($response);
+			if( password_verify($password, $row["password"]) ){
+				header("location: index.php");
+				exit;
 			}
-
-			header("Location: index.php");
-			exit;
 		}
 	}
 
-	$error = true;
-
-}
 
 ?>
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Halaman Login</title>
@@ -81,18 +43,11 @@ if( isset($_POST["login"]) ) {
 			<input type="password" name="password" id="password">
 		</li>
 		<li>
-			<input type="checkbox" name="remember" id="remember">
-			<label for="remember">Remember me</label>
-		</li>
-		<li>
 			<button type="submit" name="login">Login</button>
 		</li>
 	</ul>
 	
 </form>
-
-
-
 
 
 

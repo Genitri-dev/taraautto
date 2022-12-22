@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <?php
     #koneksi ke file fungtions
-    require "fungctions.php";
+    require "functions.php";
     #kondisi jika username sudah di kirim
-    if( isset($_POST["register"]) ){
-        if( registrasi ($_POST) > 0){
-        } else {
-            echo mysqli_error($conn);
-        }
-    }
+if( isset($_POST["register"]) ) {
+
+	if( registrasi($_POST) > 0 ) {
+		echo "<script>
+				alert('user baru berhasil ditambahkan!');
+			  </script>";
+	} else {
+		echo mysqli_error($conn);
+	}
+
+}
 ?>
 
 <html lang="en">
@@ -41,7 +46,7 @@
             </li>
             <li>
                 <label for="phone" >No Hp :</label>
-                <input type="text" name = "phone" id = "phone">
+                <input maxlength="12" type="text" name = "phone" id = "phone">
             </li>
             <li>
                 <label for="password" > Password:</label>
