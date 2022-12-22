@@ -4,15 +4,13 @@
     require "functions.php";
     #kondisi jika username sudah di kirim
 if( isset($_POST["register"]) ) {
-
 	if( registrasi($_POST) > 0 ) {
-		echo "<script>
-				alert('user baru berhasil ditambahkan!');
-			  </script>";
+		echo "user berhasil di tambahkan";
+        header("location: ./index.php");
+        exit;
 	} else {
 		echo mysqli_error($conn);
 	}
-
 }
 ?>
 

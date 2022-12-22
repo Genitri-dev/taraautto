@@ -45,6 +45,9 @@
 		<li>
 			<button type="submit" name="login">Login</button>
 		</li>
+		<li>
+			<a href="register.php">Registrasi</a>
+		</li>
 	</ul>
 	
 </form>
