@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <?php 
 	require 'koneksi.php';
-	if( isset($_POST['login']) ) {
+
+	if( isset($_POST["login"]) ) {
 
 		$username = $_POST["username"];
 		$password = $_POST["password"];
-		#mencari username di dalam tabel user
-		$response = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-
-		if( mysqli_num_rows($response) === 1){
-			$row = mysqli_fetch_assoc($response);
-			if( password_verify($password, $row["password"]) ){
-				header("location: index.php");
+	
+		$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+	
+		// cek username
+		if( mysqli_num_rows($result) === 1 ) {
+	
+			// cek password
+			$row = mysqli_fetch_assoc($result);
+			if( password_verify($password, $row["password"]) ) {
+				header("Location: index.php");
 				exit;
 			}
 		}
+	
+		$error = true;
+	
 	}
-
-
+	
 ?>
 <html>
 <head>

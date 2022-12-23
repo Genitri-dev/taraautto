@@ -1,5 +1,4 @@
 <?php
-
     // koneksi
 $conn = mysqli_connect("localhost" , "root" , "", "taraauto");
 // Check connection
