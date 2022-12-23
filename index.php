@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php
+
+    require 'koneksi.php';
+
 ?>
 <html lang="en">
 <head>
@@ -10,5 +13,15 @@
 </head>
 <body>
     <h1>index</h1>
+    <table>
+        <tr>
+            <th>ini head 1</th>
+            <td>ini data</td>
+        </tr>
+        <tr>
+            <th>ini head 2</th>
+            <td>ini data</td>
+        </tr>
+    </table>
 </body>
 </html>

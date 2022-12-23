@@ -4,10 +4,10 @@
     require "functions.php";
     #kondisi jika username sudah di kirim
 if( isset($_POST["register"]) ) {
-	if( registrasi($_POST) > 0 ) {
+	if( registrasi($_POST) ) {
 		echo "user berhasil di tambahkan";
         header("location: ./index.php");
-        exit;
+        exit();
 	} else {
 		echo mysqli_error($conn);
 	}
@@ -29,11 +29,6 @@ if( isset($_POST["register"]) ) {
         }
     </style>
 </head>
-<script >
-    if(confirm("User Berhasil Di Daftarkan")) {
-    window.location.href = "index.php"
-}
-</script>
 <body>
     <h1>Halaman Registrasi</h1>
     <form action="" method= "post">
