@@ -41,4 +41,5 @@ function registrasi($data){
 			mysqli_query($conn, "INSERT INTO user (userid, username, userphone, password) VALUES (NULL, '{$username}', '{$phone}', '{$password}')");
 			return mysqli_affected_rows($conn);
 }
+
 ?>

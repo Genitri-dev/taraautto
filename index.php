@@ -4,13 +4,10 @@
         header("Location: login.php");
         exit;
     }
-    ?>
-<!DOCTYPE html>
-<?php
     require 'koneksi.php';
-    $result = mysqli_query($conn,"SELECT * FROM produk");
-    
+    $produk = mysqli_query($conn,"SELECT * FROM produk ORDER BY namaproduk");
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,22 +26,25 @@
             <th>Stok Produk</th>
             <th>Gambar Produk</th>
             <th>Harga Produk</th>
-            
         </tr>
+         <!--menampilkan tabel dari database  -->
+         <?php $i = 1; ?>
+         <?php foreach( $produk as $row ) : ?>
         <tr>
-            <td>1</td>
+            <td><?= $i; ?></td>
             <td>
                 <a href="">Edit</a> 
                     |
                 <a href="">Delete</a>
             </td>
-            <td>1</td>
-            <td>Oli Federal</td>
-            <td>25</td>
-            <td><img src="img/olifederal.jpeg" alt=""></td>
-            <td>45000</td>
+            <td> <?= $row["produkid"]; ?> </td>
+            <td> <?= $row["namaproduk"]; ?> </td>
+            <td> <?= $row["stokproduk"]; ?> </td>
+            <td> <img src="./img/<?= $row['gabarproduk']?>"></td>
+            <td> <?= $row["hargaproduk"]; ?> </td>
         </tr>
-
+        <?php $i++; ?>
+	    <?php endforeach; ?>
     </table>
     <a href="logout.php">Logout</a>
 </body>
