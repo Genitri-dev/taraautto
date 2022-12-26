@@ -1,3 +1,9 @@
+<?php
+	session_start();
+	if (isset($_SESSION["login"])){
+		header("Location: index.php");
+	}
+?>
 <!DOCTYPE html>
 <?php 
 	require 'koneksi.php';
@@ -11,13 +17,15 @@
 	
 		// cek username
 		if( mysqli_num_rows($result) === 1 ) {
-	
+			//set sesion
+			$_SESSION["login"] = true;
 			// cek password
 			$row = mysqli_fetch_assoc($result);
 			if( password_verify($password, $row["password"]) ) {
 				header("Location: index.php");
 				exit;
 			}
+
 		}
 	
 		$error = true;
@@ -52,7 +60,7 @@
 			<button type="submit" name="login">Login</button>
 		</li>
 		<li>
-			<a href="register.php">Registrasi</a>
+			<a href="registrasi.php">Registrasi</a>
 		</li>
 	</ul>
 	
