@@ -3,15 +3,17 @@
     #koneksi ke file fungtions
     require "functions.php";
     #kondisi jika username sudah di kirim
-if( isset($_POST["register"]) ) {
-	if( registrasi($_POST) ) {
-		echo "user berhasil di tambahkan";
-        header("location: ./index.php");
-        exit();
-	} else {
-		echo mysqli_error($conn);
-	}
-}
+    if( isset($_POST["register"]) ) {
+    	if( registrasi($_POST) ) {
+    		echo "user berhasil di tambahkan";
+            header("location: ./index.php");
+            exit();
+    	} else {
+    		echo mysqli_error($conn);
+    	}
+    }
+    #kondisi jika form kosong 
+    
 ?>
 
 <html lang="en">

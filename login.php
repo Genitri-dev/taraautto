@@ -57,9 +57,5 @@
 	</ul>
 	
 </form>
-
-
-
-
 </body>
 </html>

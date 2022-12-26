@@ -9,5 +9,4 @@ if (mysqli_connect_errno()) {
 else {
     echo("berhasil terkoneksi ke database");
 }
-
 ?>
