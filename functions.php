@@ -2,6 +2,7 @@
  	require 'koneksi.php';
  	ini_set('display_errors', 1);
 	error_reporting(-1);
+
 //registrasi
 function registrasi($data){
 	 	 #variable	
@@ -42,4 +43,27 @@ function registrasi($data){
 			return mysqli_affected_rows($conn);
 }
 
+//menambahkan 
+function tambah ($data){
+	global $conn;
+	$namaproduk =  htmlspecialchars($data["namaproduk"]);
+	$stokproduk =  htmlspecialchars($data["stokproduk"]);
+	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
+    $hargaproduk = htmlspecialchars($data["hargaproduk"]);
+
+	//memasukan data ke data base
+	$qery = "INSERT INTO `produk`
+			 VALUES 
+			 (NULL,'$namaproduk','$stokproduk','$gambarproduk','$hargaproduk')
+			 ";
+	mysqli_query($conn,$qery);
+	return mysqli_affected_rows($conn);
+}
+
+//hapus produk
+function hapus ($id) {
+	global $conn;
+	mysqli_query($conn, "DELETE FROM produk WHERE produkid = $id");
+	return mysqli_affected_rows($conn);
+}
 ?>

@@ -16,7 +16,9 @@
     <title>index</title>
 </head>
 <body>
-    <h1>index</h1>
+    <h1>Stok Produk</h1>
+    <a href="tambah.php">Tambahkan Produk</a>
+    <br> <br>
     <table border = "1" cellpadding = "10" cellspacing = "8">
         <tr>
             <th>NO</th>
@@ -35,12 +37,12 @@
             <td>
                 <a href="">Edit</a> 
                     |
-                <a href="">Delete</a>
+                <a href="hapus.php?id=<?= $row['produkid']?>" onclick="return confirm('Apakah Produk Akan Di Hapus');">Delete</a>
             </td>
             <td> <?= $row["produkid"]; ?> </td>
             <td> <?= $row["namaproduk"]; ?> </td>
             <td> <?= $row["stokproduk"]; ?> </td>
-            <td> <img src="./img/<?= $row['gabarproduk']?>"></td>
+            <td> <img src="./img/<?= $row['gabarproduk']?>" width="40%"></td>
             <td> <?= $row["hargaproduk"]; ?> </td>
         </tr>
         <?php $i++; ?>
