@@ -2,7 +2,16 @@
  	require 'koneksi.php';
  	ini_set('display_errors', 1);
 	error_reporting(-1);
-
+	//query
+function query($query){
+	global $conn;
+	$result = mysqli_query($conn, $query);
+	$rows = [];
+	while( $row = mysqli_fetch_assoc($result) ){
+		$rows[] = $row;
+	}
+	return $rows;
+}
 //registrasi
 function registrasi($data){
 	 	 #variable	
@@ -52,11 +61,11 @@ function tambah ($data){
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
 
 	//memasukan data ke data base
-	$qery = "INSERT INTO `produk`
+	$query = "INSERT INTO `produk`
 			 VALUES 
 			 (NULL,'$namaproduk','$stokproduk','$gambarproduk','$hargaproduk')
 			 ";
-	mysqli_query($conn,$qery);
+	mysqli_query($conn,$query);
 	return mysqli_affected_rows($conn);
 }
 
@@ -64,6 +73,26 @@ function tambah ($data){
 function hapus ($id) {
 	global $conn;
 	mysqli_query($conn, "DELETE FROM produk WHERE produkid = $id");
+	return mysqli_affected_rows($conn);
+}
+
+//ubah informasi produk
+function ubah ($data){
+	global $conn;
+	$id = $data["produkid"];
+	$namaproduk =  htmlspecialchars($data["namaproduk"]);
+	$stokproduk =  htmlspecialchars($data["stokproduk"]);
+	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
+    $hargaproduk = htmlspecialchars($data["hargaproduk"]);
+
+	//memasukan data ke data base
+	$query = "UPDATE `produk` SET 
+	`namaproduk` = '$namaproduk', 
+	`stokproduk` = '$stokproduk', 
+	`gambarproduk` = '$gambarproduk', 
+	`hargaproduk` = '$hargaproduk'
+	 WHERE `produk`.`produkid` = $id ";
+	mysqli_query($conn, $query);
 	return mysqli_affected_rows($conn);
 }
 ?>

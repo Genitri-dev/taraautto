@@ -35,14 +35,14 @@
         <tr>
             <td><?= $i; ?></td>
             <td>
-                <a href="">Edit</a> 
+                <a href="ubah.php?id=<?= $row['produkid']?>">Edit</a> 
                     |
                 <a href="hapus.php?id=<?= $row['produkid']?>" onclick="return confirm('Apakah Produk Akan Di Hapus');">Delete</a>
             </td>
             <td> <?= $row["produkid"]; ?> </td>
             <td> <?= $row["namaproduk"]; ?> </td>
             <td> <?= $row["stokproduk"]; ?> </td>
-            <td> <img src="./img/<?= $row['gabarproduk']?>" width="40%"></td>
+            <td> <img src="./img/<?= $row['gambarproduk']?>" width="40%"></td>
             <td> <?= $row["hargaproduk"]; ?> </td>
         </tr>
         <?php $i++; ?>
