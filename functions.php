@@ -24,8 +24,8 @@ function registrasi($data){
 	  		$result = mysqli_query($conn, "SELECT username FROM user WHERE username = '$username'");
     	    if( mysqli_fetch_assoc($result) ) {
     	    	echo "<script>
-    	    			alert('username sudah terdaftar')
-    	    	      </script>";
+				alert('username sudah terdaftar')
+				</script>";
     	    	return false;
     	    }
 			// cek form sudah di isi atau belum
@@ -38,7 +38,7 @@ function registrasi($data){
 			// cek konfirmasi password
    	
 			if( $password !== $password2 ) {
-	
+				
 				echo "<script>
 	  			alert('konfirmasi password tidak sesuai!');
 	  	      </script>";
@@ -58,7 +58,9 @@ function tambah ($data){
 	$namaproduk =  htmlspecialchars($data["namaproduk"]);
 	$stokproduk =  htmlspecialchars($data["stokproduk"]);
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
-
+	echo $namaproduk;
+	die();
+	print_r($_FILES['gambarproduk']);
 	// upload gambar
 	$gambarproduk = upload();
 	if( !$gambarproduk ){
@@ -92,8 +94,13 @@ function upload() {
 	
 	//hanya boleh upload gambar
 	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-	#$ekstensiGambar = explode('.', $namaFile);
-	$ekstensiGambar = strtolower(end($ekstensiGambar));
+	echo $namaFile;
+	die();
+	$ekstensiGambar = explode('.', $namaFile);
+	
+	$ekstensiGambar2 = strtolower($ekstensiGambar[count($ekstensiGambar) -1]);
+	echo $ekstensiGambar2;
+	die();
 	if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
 		echo "<script>
 				alert('yang anda upload bukan gambar!');
@@ -137,6 +144,12 @@ function ubah ($data){
 	$gambarLama = htmlspecialchars($data["gambarLama"]);
 	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
 	//cek user memasukan gambar baru atau tidak
+
+	$ekstensiGambar = explode('.', $gambarproduk);
+	
+	$ekstensiGambar2 = strtolower($ekstensiGambar[count($ekstensiGambar) -1]);
+	echo $ekstensiGambar2;
+	die();
 	if ($_FILES['gambarproduk']['error'] === 4) {
 		$gambarproduk = $gambarLama;
 	} else {
