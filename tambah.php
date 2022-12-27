@@ -31,7 +31,7 @@
 <body>
     <h1>tambah.php</h1> <a href="logout.php">Logout</a>
 
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data" >
     <ul>
 			<li>
 				<label for="namaproduk">Nama Produk : </label>
@@ -43,7 +43,7 @@
 			</li>
 			<li>
 				<label for="gambarproduk">Gabar Produk :</label>
-				<input type="text" name="gambarproduk" id="gambarproduk" required>
+				<input type="file" name="gambarproduk" id="gambarproduk">
 			</li>
 			<li>
 				<label for="hargaproduk">Harga Produk :</label>

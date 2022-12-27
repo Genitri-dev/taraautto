@@ -57,8 +57,13 @@ function tambah ($data){
 	global $conn;
 	$namaproduk =  htmlspecialchars($data["namaproduk"]);
 	$stokproduk =  htmlspecialchars($data["stokproduk"]);
-	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
+
+	// upload gambar
+	$gambarproduk = upload();
+	if( !$gambarproduk ){
+		return false;
+	}
 
 	//memasukan data ke data base
 	$query = "INSERT INTO `produk`
@@ -69,6 +74,51 @@ function tambah ($data){
 	return mysqli_affected_rows($conn);
 }
 
+function upload() {
+	$namaFile = $_FILES['gambarproduk']['name'];
+	$ukuranFile = $_FILES['gambarproduk']['size'];
+	$error = $_FILES['gambarproduk']['error'];
+	$tmpName = $_FILES['gambarproduk']['tmp_name'];
+
+	// di upload atau tidak
+	if ( $error === 4 ){
+		echo"
+			<script>
+				alert('Gambar Tidak Bole Kosong');
+			</script>
+		";
+		return false;
+	}
+	
+	//hanya boleh upload gambar
+	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+	#$ekstensiGambar = explode('.', $namaFile);
+	$ekstensiGambar = strtolower(end($ekstensiGambar));
+	if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
+		echo "<script>
+				alert('yang anda upload bukan gambar!');
+			  </script>";
+		return false;
+	}
+
+	//jika ukuran gambar terlalubesar (on progres)
+	if( $ukuranFile > 1000000 ) {
+		echo "<script>
+				alert('ukuran gambar terlalu besar!');
+			  </script>";
+		return false;
+	}
+	//lolos pengecekan gambar lolos di upload 
+	// generate nama gambar baru 
+	$namaFileBaru = uniqid();
+	$namaFileBaru .= '.';
+	$namaFileBaru .= $ekstensiGambar;
+
+
+	move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+	return $namaFileBaru;
+}
+
 //hapus produk
 function hapus ($id) {
 	global $conn;
@@ -76,15 +126,23 @@ function hapus ($id) {
 	return mysqli_affected_rows($conn);
 }
 
+
 //ubah informasi produk
 function ubah ($data){
 	global $conn;
 	$id = $data["produkid"];
 	$namaproduk =  htmlspecialchars($data["namaproduk"]);
 	$stokproduk =  htmlspecialchars($data["stokproduk"]);
-	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
-
+	$gambarLama = htmlspecialchars($data["gambarLama"]);
+	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
+	//cek user memasukan gambar baru atau tidak
+	if ($_FILES['gambarproduk']['error'] === 4) {
+		$gambarproduk = $gambarLama;
+	} else {
+		$gambarproduk = upload();
+	}
+	
 	//memasukan data ke data base
 	$query = "UPDATE `produk` SET 
 	`namaproduk` = '$namaproduk', 
@@ -95,4 +153,5 @@ function ubah ($data){
 	mysqli_query($conn, $query);
 	return mysqli_affected_rows($conn);
 }
+
 ?>

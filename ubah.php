@@ -10,16 +10,15 @@
     $id = $_GET["id"];
     // query data produk berdasarkan id
     $prd = query("SELECT * FROM produk WHERE produkid = $id")[0];
-    
     if( isset($_POST["submit"]) ){
         //apakah data berhasil diubah  atau tidak
         if( ubah($_POST) > 0){
             echo "
                 <script>
                     alert('Produk Berhasil Di Ubah');
-                    document.location.href = 'index.php';
-                </script>
-            ";
+                    </script>
+                    ";
+                    #document.location.href = 'index.php';
         } else {
             echo "Produk Tidak Berhasil Di Ubah";
         }
@@ -34,25 +33,27 @@
     <title>Tara Auto</title>
 </head>
 <body>
-    <h1>tambah.php</h1> <a href="logout.php">Logout</a>
-    <form action="" method="POST">
+    <h1>tambahkan produk baru </h1> <a href="logout.php">Logout</a>
+    <form action="" method="POST" nctype="multipart/form-data">
     <ul>
         <input type="hidden" name="produkid" value="<?= $prd['produkid']?>">
+        <input type="hidden" name="gambarLama" value="<?= $prd['gambarproduk']?>">
 			<li>
 				<label for="namaproduk">Nama Produk : </label>
 				<input type="text" name="namaproduk" id="namaproduk" required value="<?= $prd["namaproduk"]; ?>">
 			</li>
 			<li>
 				<label for="stokproduk">Stok Produk : </label>
-				<input type="text" name="stokproduk" id="stokproduk" required value="<?= $prd["stokproduk"]; ?>">
+				<input type="number" name="stokproduk" id="stokproduk" required value="<?= $prd["stokproduk"]; ?>">
 			</li>
 			<li>
-				<label for="gambarproduk">Gabar Produk :</label>
-				<input type="text" name="gambarproduk" id="gambarproduk" required value="<?= $prd["gambarproduk"]; ?>">
+				<label for="gambarproduk">Gabar Produk :</label> <br>
+                <img src="./img/<?= $prd['gambarproduk']?>" width="10%" alt="<?= $prd["gambarproduk"]; ?>"> <br>
+				<input type="file" name="gambarproduk" id="gambarproduk">
 			</li>
 			<li>
 				<label for="hargaproduk">Harga Produk :</label>
-				<input type="text" name="hargaproduk" id="hargaproduk" required value="<?= $prd["hargaproduk"]; ?>">
+				<input type="number" name="hargaproduk" id="hargaproduk" required value="<?= $prd["hargaproduk"]; ?>">
 			</li>
 			<li>
 				<button type="submit" name="submit">Ubah Detail Produk!</button>
