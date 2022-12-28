@@ -17,6 +17,7 @@ function registrasi($data){
 	 	 #variable	
 	     global $conn;
      	 $username = $data["username"];
+		 $name = $data["nama"];
      	 $phone = $data["phone"];
      	 $password = $data["password"];
          $password2 =$data["password2"];
@@ -48,7 +49,7 @@ function registrasi($data){
 			// enkripsi password
 			$password = password_hash($password, PASSWORD_DEFAULT);
 			// tambahkan userbaru ke database
-			mysqli_query($conn, "INSERT INTO user (userid, username, userphone, password) VALUES (NULL, '{$username}', '{$phone}', '{$password}')");
+			mysqli_query($conn, "INSERT INTO `user` (`userid`, `username`, `nama`, `userphone`, `password`) VALUES (NULL, '{$username}', '{$name}', '{$phone}', '{$password}')");
 			return mysqli_affected_rows($conn);
 }
 
@@ -58,8 +59,7 @@ function tambah ($data){
 	$namaproduk =  htmlspecialchars($data["namaproduk"]);
 	$stokproduk =  htmlspecialchars($data["stokproduk"]);
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
-	echo $namaproduk;
-	die();
+
 	print_r($_FILES['gambarproduk']);
 	// upload gambar
 	$gambarproduk = upload();
@@ -94,13 +94,11 @@ function upload() {
 	
 	//hanya boleh upload gambar
 	$ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-	echo $namaFile;
-	die();
+	
 	$ekstensiGambar = explode('.', $namaFile);
 	
-	$ekstensiGambar2 = strtolower($ekstensiGambar[count($ekstensiGambar) -1]);
-	echo $ekstensiGambar2;
-	die();
+	$ekstensiGambar = strtolower(end($ekstensiGambar));
+	
 	if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
 		echo "<script>
 				alert('yang anda upload bukan gambar!');
@@ -147,9 +145,8 @@ function ubah ($data){
 
 	$ekstensiGambar = explode('.', $gambarproduk);
 	
-	$ekstensiGambar2 = strtolower($ekstensiGambar[count($ekstensiGambar) -1]);
-	echo $ekstensiGambar2;
-	die();
+	$ekstensiGambar = strtolower(end($ekstensiGambar));
+
 	if ($_FILES['gambarproduk']['error'] === 4) {
 		$gambarproduk = $gambarLama;
 	} else {

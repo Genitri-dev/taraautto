@@ -43,7 +43,7 @@
 			</li>
 			<li>
 				<label for="gambarproduk">Gabar Produk :</label>
-				<input type="file" name="gambarproduk" id="gambarproduk">
+				<input type="file" name="gambarproduk" id="gambarproduk" required>
 			</li>
 			<li>
 				<label for="hargaproduk">Harga Produk :</label>
