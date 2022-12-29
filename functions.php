@@ -2,6 +2,7 @@
  	require 'koneksi.php';
  	ini_set('display_errors', 1);
 	error_reporting(-1);
+	$verfi = 0;
 	//query
 function query($query){
 	global $conn;
@@ -77,11 +78,11 @@ function tambah ($data){
 }
 
 function upload() {
+	global $verfi;
 	$namaFile = $_FILES['gambarproduk']['name'];
 	$ukuranFile = $_FILES['gambarproduk']['size'];
 	$error = $_FILES['gambarproduk']['error'];
 	$tmpName = $_FILES['gambarproduk']['tmp_name'];
-
 	// di upload atau tidak
 	if ( $error === 4 ){
 		echo"
@@ -105,23 +106,22 @@ function upload() {
 			  </script>";
 		return false;
 	}
-
-	//jika ukuran gambar terlalubesar (on progres)
-	if( $ukuranFile > 1000000 ) {
+	//jika ukuran gambar terlalubesar 
+	else if( $ukuranFile > 1000000 ) {
 		echo "<script>
 				alert('ukuran gambar terlalu besar!');
 			  </script>";
 		return false;
+		exit();
+	} else {
+		//lolos pengecekan gambar lolos di upload 
+		// generate nama gambar baru 
+		$namaFileBaru = uniqid();
+		$namaFileBaru .= '.';
+		$namaFileBaru .= $ekstensiGambar;
+		move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+		return $namaFileBaru;
 	}
-	//lolos pengecekan gambar lolos di upload 
-	// generate nama gambar baru 
-	$namaFileBaru = uniqid();
-	$namaFileBaru .= '.';
-	$namaFileBaru .= $ekstensiGambar;
-
-
-	move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
-	return $namaFileBaru;
 }
 
 //hapus produk
@@ -136,22 +136,18 @@ function hapus ($id) {
 function ubah ($data){
 	global $conn;
 	$id = $data["produkid"];
-	$namaproduk =  htmlspecialchars($data["namaproduk"]);
-	$stokproduk =  htmlspecialchars($data["stokproduk"]);
-    $hargaproduk = htmlspecialchars($data["hargaproduk"]);
-	$gambarLama = htmlspecialchars($data["gambarLama"]);
-	$gambarproduk =  htmlspecialchars($data["gambarproduk"]);
+	$namaproduk =  ($data["namaproduk"]);
+	$stokproduk =  ($data["stokproduk"]);
+    $hargaproduk = ($data["hargaproduk"]);
+	$gambarLama = ($data["gambarLama"]);
+	$gambarproduk = isset ($data["gambarproduk"]);
 	//cek user memasukan gambar baru atau tidak
-
-	$ekstensiGambar = explode('.', $gambarproduk);
-	
-	$ekstensiGambar = strtolower(end($ekstensiGambar));
-
-	if ($_FILES['gambarproduk']['error'] === 4) {
+	if ($_FILES["gambarproduk"]["error"] === 4) {
 		$gambarproduk = $gambarLama;
 	} else {
 		$gambarproduk = upload();
 	}
+	
 	
 	//memasukan data ke data base
 	$query = "UPDATE `produk` SET 
