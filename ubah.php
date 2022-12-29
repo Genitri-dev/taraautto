@@ -11,7 +11,7 @@
     // query data produk berdasarkan id
     $prd = query("SELECT * FROM produk WHERE produkid = $id")[0];
     if( isset($_POST["submit"]) ) {
-	
+
         // cek apakah data berhasil diubah atau tidak
         if( ubah($_POST) > 0 ) {
             echo "

@@ -4,6 +4,7 @@
         header("Location: login.php");
         exit;
     }
+    echo "Welcome, " . $_SESSION['username']." ";
     require 'koneksi.php';
     $produk = mysqli_query($conn,"SELECT * FROM produk ORDER BY namaproduk");
 ?>
@@ -13,7 +14,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
+    <title>Tara Auto</title>
 </head>
 <body>
     <h1>Stok Produk</h1>
@@ -28,6 +29,7 @@
             <th>Stok Produk</th>
             <th>Gambar Produk</th>
             <th>Harga Produk</th>
+            <th>History Edit</th>
         </tr>
          <!--menampilkan tabel dari database  -->
          <?php $i = 1; ?>
@@ -44,6 +46,7 @@
             <td> <?= $row["namaproduk"]; ?> </td>
             <td> <?= $row["stokproduk"]; ?> </td>
             <td> <img src="./img/<?= $row['gambarproduk']?>" width="40%"></td>
+            <td> <?= $row["hargaproduk"]; ?> </td>
             <td> <?= $row["hargaproduk"]; ?> </td>
         </tr>
         <?php $i++; ?>

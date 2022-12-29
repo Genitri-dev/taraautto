@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	
 	if (isset($_SESSION["login"])){
 		header("Location: index.php");
 	}
@@ -9,8 +10,9 @@
 	require 'koneksi.php';
 
 	if( isset($_POST["login"]) ) {
-
+		
 		$username = $_POST["username"];
+		$_SESSION['username'] = $username;
 		$password = $_POST["password"];
 	
 		$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");

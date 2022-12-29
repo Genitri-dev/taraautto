@@ -61,7 +61,7 @@ function tambah ($data){
 	$stokproduk =  htmlspecialchars($data["stokproduk"]);
     $hargaproduk = htmlspecialchars($data["hargaproduk"]);
 
-	print_r($_FILES['gambarproduk']);
+	#print_r($_FILES['gambarproduk']);
 	// upload gambar
 	$gambarproduk = upload();
 	if( !$gambarproduk ){
@@ -103,7 +103,9 @@ function upload() {
 	if( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
 		echo "<script>
 				alert('yang anda upload bukan gambar!');
+				document.location.href = 'index.php';
 			  </script>";
+		exit();
 		return false;
 	}
 	//jika ukuran gambar terlalubesar 
@@ -146,6 +148,7 @@ function ubah ($data){
 		$gambarproduk = $gambarLama;
 	} else {
 		$gambarproduk = upload();
+		
 	}
 	
 	
