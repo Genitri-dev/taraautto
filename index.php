@@ -37,7 +37,8 @@
             <td>
                 <a href="ubah.php?id=<?= $row['produkid']?>">Edit</a> 
                     |
-                <a href="hapus.php?id=<?= $row['produkid']?>" onclick="return confirm('Apakah Produk Akan Di Hapus');">Delete</a>
+                <a href="hapus.php?id=<?= $row['produkid']?>" 
+                onclick="return confirm('Apakah Produk Akan Di Hapus');">Delete</a>
             </td>
             <td> <?= $row["produkid"]; ?> </td>
             <td> <?= $row["namaproduk"]; ?> </td>

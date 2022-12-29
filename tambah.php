@@ -35,11 +35,11 @@
     <ul>
 			<li>
 				<label for="namaproduk">Nama Produk : </label>
-				<input type="text" name="namaproduk" id="namaproduk" required>
+				<input type="text" name="namaproduk" id="namaproduk">
 			</li>
 			<li>
 				<label for="stokproduk">Stok Produk : </label>
-				<input type="text" name="stokproduk" id="stokproduk" required>
+				<input type="text" name="stokproduk" id="stokproduk">
 			</li>
 			<li>
 				<label for="gambarproduk">Gabar Produk :</label>
@@ -47,7 +47,7 @@
 			</li>
 			<li>
 				<label for="hargaproduk">Harga Produk :</label>
-				<input type="text" name="hargaproduk" id="hargaproduk" required>
+				<input type="text" name="hargaproduk" id="hargaproduk">
 			</li>
 			<li>
 				<button type="submit" name="submit">Tambah Produk!</button>

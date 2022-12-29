@@ -40,6 +40,10 @@
                 <input type="text" name = "username" id = "username">
             </li>
             <li>
+                <label for="nama" > Nama Anda:</label>
+                <input type="text" name = "nama" id = "nama">
+            </li>
+            <li>
                 <label for="phone" >No Hp :</label>
                 <input maxlength="12" type="text" name = "phone" id = "phone">
             </li>

@@ -10,18 +10,27 @@
     $id = $_GET["id"];
     // query data produk berdasarkan id
     $prd = query("SELECT * FROM produk WHERE produkid = $id")[0];
-    if( isset($_POST["submit"]) ){
-        //apakah data berhasil diubah  atau tidak
-        if( ubah($_POST) > 0){
+    if( isset($_POST["submit"]) ) {
+	
+        // cek apakah data berhasil diubah atau tidak
+        if( ubah($_POST) > 0 ) {
             echo "
                 <script>
-                    alert('Produk Berhasil Di Ubah');
-                    </script>
-                    ";
-                    #document.location.href = 'index.php';
-        } else {
-            echo "Produk Tidak Berhasil Di Ubah";
+                    alert('data berhasil diubah!');
+                    document.location.href = 'index.php';
+                </script>
+            ";
+        } 
+        else {
+            echo "
+                <script>
+                    alert('data gagal diubah!');
+                    document.location.href = 'index.php';
+                </script>
+            ";
         }
+    
+    
     }
 
 ?>
@@ -34,7 +43,7 @@
 </head>
 <body>
     <h1>tambahkan produk baru </h1> <a href="logout.php">Logout</a>
-    <form action="" method="POST" nctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data">
     <ul>
         <input type="hidden" name="produkid" value="<?= $prd['produkid']?>">
         <input type="hidden" name="gambarLama" value="<?= $prd['gambarproduk']?>">
