@@ -8,23 +8,116 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    text-align: center;
 }
 li {
     list-style-type: none;
     padding: 10px 0px;
 }
 /* LOGIN */
+#f_wrapper{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
 #f_login{
-/* For traslucnt background */
-background: rgba(255, 255, 255, 0.79);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
+    /* For traslucnt background */
+    background: rgba(255, 255, 255, 0.79);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* size */
+    height: auto;
+    width: 500px;
+    padding: 1em;
+    /* placement */
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 #f_err  {
     text-align: center;
     color: red; 
     font-style: italic;
+}
+button {
+    padding: 10px;
+    border-style: none;
+    border-radius: 3px;
+    background-color: #DA0037;
+    color: white;
+    font-size: x-large;
+}
+button:hover {
+    background-color: green;
+    transition: 0.7s;
+}
+
+#username{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#password{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#forward {
+    text-decoration: none;
+    color: black;
+}
+
+/* REGISTRASI */
+#f_regis{
+        /* For traslucnt background */
+        background: rgba(255, 255, 255, 0.79);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* size */
+        height: auto;
+        width: 550px;
+        padding: 1em;
+        /* placement */
+        text-align: center;
+}
+#f_wrapper{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+#username{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#nama{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#phone{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#password{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
+}
+#password2{
+    border-radius: 5px;
+    border-style: none;
+    padding: 1em;
 }

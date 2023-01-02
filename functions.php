@@ -49,7 +49,7 @@ function registrasi($data){
 			// cek form sudah di isi atau belum
 			if (empty($username && $password)){
 				echo "<script>
-    	    			alert('username dan password harus di isi')
+    	    			alert('username dan password harus di isi');
     	    	      </script>";
     	    	return false;
 			} 
