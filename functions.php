@@ -1,9 +1,25 @@
 <?php
  	require 'koneksi.php';
- 	ini_set('display_errors', 1);
+ 	//to display any error in php
+	ini_set('display_errors', 1);
 	error_reporting(-1);
-	$verfi = 0;
-	//query
+
+		//to delete file if its not use in database
+	$path = 'img/';
+	//get lits of that folder use scandir
+	$files = scandir($path);
+	$files = array_diff($files, array('.','..'));
+	foreach ($files as $file) {
+		// Check if the file is in the database
+		$sql = "SELECT * FROM produk WHERE gambarproduk = '$file'";
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) == 0) {
+			// The file is not in the database - delete it from the folder
+			unlink($path. '/' . $file);
+		}
+	}
+
+//query
 function query($query){
 	global $conn;
 	$result = mysqli_query($conn, $query);
@@ -71,7 +87,7 @@ function tambah ($data){
 	//memasukan data ke data base
 	$query = "INSERT INTO `produk`
 			 VALUES 
-			 (NULL,'$namaproduk','$stokproduk','$gambarproduk','$hargaproduk')
+			 (NULL,NULL,'$namaproduk','$stokproduk','$gambarproduk','$hargaproduk')
 			 ";
 	mysqli_query($conn,$query);
 	return mysqli_affected_rows($conn);
@@ -133,7 +149,6 @@ function hapus ($id) {
 	return mysqli_affected_rows($conn);
 }
 
-
 //ubah informasi produk
 function ubah ($data){
 	global $conn;
@@ -143,17 +158,18 @@ function ubah ($data){
     $hargaproduk = ($data["hargaproduk"]);
 	$gambarLama = ($data["gambarLama"]);
 	$gambarproduk = isset ($data["gambarproduk"]);
+	$namauser =  $_SESSION['username'];
 	//cek user memasukan gambar baru atau tidak
 	if ($_FILES["gambarproduk"]["error"] === 4) {
 		$gambarproduk = $gambarLama;
 	} else {
 		$gambarproduk = upload();
-		
 	}
 	
 	
 	//memasukan data ke data base
 	$query = "UPDATE `produk` SET 
+	`nama` = '$namauser', 
 	`namaproduk` = '$namaproduk', 
 	`stokproduk` = '$stokproduk', 
 	`gambarproduk` = '$gambarproduk', 
