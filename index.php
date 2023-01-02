@@ -47,7 +47,7 @@
             <td> <?= $row["stokproduk"]; ?> </td>
             <td> <img src="./img/<?= $row['gambarproduk']?>" width="40%"></td>
             <td> <?= $row["hargaproduk"]; ?> </td>
-            <td> <?= $row["hargaproduk"]; ?> </td>
+            <td>  Last Edit By <?= $row["nama"]; ?></td>
         </tr>
         <?php $i++; ?>
 	    <?php endforeach; ?>
