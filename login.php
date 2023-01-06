@@ -8,7 +8,6 @@
 <!DOCTYPE html>
 <?php 
 	require 'koneksi.php';
-
 	if( isset($_POST["login"]) ) {
 		//untuk form
 		$username = $_POST["username"];
