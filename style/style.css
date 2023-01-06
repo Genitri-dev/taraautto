@@ -3,6 +3,7 @@
 /* Rooot / body */
 body{
     font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0a0018;
     /* text-align: center; */
 }
 .LoginRegis{
@@ -132,7 +133,7 @@ button:hover {
 #wpin_index{
     width: 300px;
     height: 350px;
-    background-color: #171717;
+    background-color: #070707;
     color: white;
     border-radius: 2% ;
 }
@@ -162,7 +163,7 @@ button:hover {
 #a_edit{
     padding: 5px;
     /* margin-right: 1px; */
-    background-color: rgb(21, 141, 21);
+    background-color: #23C552;
     border-radius: 3%;
 }
 #a_dell{
@@ -192,4 +193,29 @@ button:hover {
     #prod_out2{
         width: 100%;
      }
+}
+#judul {
+    font-size: 80px;
+    text-align: center;
+    color: white;
+}
+#judul2 {
+    font-size: 80px;
+    text-align: center;
+    color: #DA0037;
+}
+#tambah svg{
+    fill: white;
+}
+#tambah_wp{
+    padding: 0.4em;
+    background-color: #23C552;
+    border-radius: 10px;
+    width: 200px;
+}
+#tambah p{
+    display: inline;
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
 }

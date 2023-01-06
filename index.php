@@ -19,9 +19,15 @@
 	<!-- Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
 </head>
-<body class="LoginRegis">
-    <h1>Stok Produk</h1>
-    <a href="tambah.php">Tambahkan Produk</a>
+<body>
+    <h1 id="judul" ><span id="judul2">Stok</span> Produk</h1>
+    <div id="tambah_wp">    
+        <a id="tambah" href="tambah.php"> 
+            <svg xmlns="http://www.w3.org/2000/svg" id="svg_add" height="48" width="48"><path d="M22.5 38V25.5H10v-3h12.5V10h3v12.5H38v3H25.5V38Z"/></svg> 
+            <p>Tambahkan Produk</p>
+        </a>
+    </div>
+    <a href="logout.php">Logout</a>
     <br> <br>
     <div id="prod_out1">
         <!--menampilkan tabel dari database  -->
@@ -40,6 +46,5 @@
             </div>
             <?php endforeach; ?>
     </div>
-    <a href="logout.php">Logout</a>
 </body>
 </html>
