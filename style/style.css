@@ -1,19 +1,26 @@
 /* Font */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap'); 
 /* Rooot / body */
-body {
+body{
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background: url(../f_style/autoshop.jpg) no-repeat center center fixed;
+    /* text-align: center; */
+}
+.LoginRegis{
+    background: url("../f_style/autoshop.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    text-align: center;
+}
+a{
+    text-decoration: none;
+    color: white;
 }
 li {
     list-style-type: none;
     padding: 10px 0px;
 }
+
 /* LOGIN */
 #f_wrapper{
     position: absolute;
@@ -57,7 +64,6 @@ button:hover {
     background-color: green;
     transition: 0.7s;
 }
-
 #username{
     border-radius: 5px;
     border-style: none;
@@ -75,19 +81,19 @@ button:hover {
 
 /* REGISTRASI */
 #f_regis{
-        /* For traslucnt background */
-        background: rgba(255, 255, 255, 0.79);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        /* size */
-        height: auto;
-        width: 550px;
-        padding: 1em;
-        /* placement */
-        text-align: center;
+    /* For traslucnt background */
+    background: rgba(255, 255, 255, 0.79);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* size */
+    height: auto;
+    width: 550px;
+    padding: 1em;
+    /* placement */
+    text-align: center;
 }
 #f_wrapper{
     position: absolute;
@@ -120,4 +126,70 @@ button:hover {
     border-radius: 5px;
     border-style: none;
     padding: 1em;
+}
+
+/*  INDEX    */
+#wpin_index{
+    width: 300px;
+    height: 350px;
+    background-color: #171717;
+    color: white;
+    border-radius: 2% ;
+}
+#namaproduk{
+    text-align: center;
+    padding-top: 1em;
+}
+#img_indx{
+    width: 100%;
+    max-height: 150px;
+}
+#harga{
+    text-align: center;
+    padding: 10px;
+    position: absolute ;
+    margin-top: -3em;
+    width: 100px;
+    border-radius: 0px 0px 1em 0px;
+    background-color: #DA0037;
+}
+#stok,#history{
+    margin-left: 10px;
+}
+#actions{
+    text-align: center;
+}
+#a_edit{
+    padding: 5px;
+    /* margin-right: 1px; */
+    background-color: rgb(21, 141, 21);
+    border-radius: 3%;
+}
+#a_dell{
+    padding: 5px;
+    background-color: rgb(214, 61, 61);
+    border-radius: 3%;
+}
+#prod_out2{
+   width: 25%;
+}
+#prod_out1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+@media (max-width: 767px) {
+    #prod_out2{
+        width: 50%;
+     }
+}
+@media (max-width: 320px) {
+    #prod_out2{
+        width: 100%;
+     }
+}
+@media (max-width: 480px) {
+    #prod_out2{
+        width: 100%;
+     }
 }

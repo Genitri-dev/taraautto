@@ -10,11 +10,12 @@
 	require 'koneksi.php';
 
 	if( isset($_POST["login"]) ) {
-		
+		//untuk form
 		$username = $_POST["username"];
-		$_SESSION['username'] = $username;
 		$password = $_POST["password"];
-	
+		//untuk mengambil username
+		$_SESSION['username'] = $username;
+		//fungsi login
 		$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
 	
 		// cek username
@@ -52,7 +53,7 @@
 	</script>
          			
 <?php endif; ?>
-<body>
+<body class="LoginRegis">
 	<div id="f_wrapper">
          <form id="f_login" action="" method="post">
          	<!-- <img id="f_img" src="f_style/autoshop.jpg" alt=""> -->
